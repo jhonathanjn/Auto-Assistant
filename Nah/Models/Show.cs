@@ -4,18 +4,38 @@ using System.Text;
 
 namespace Nah.Models
 {
-    internal class Helpme
+    internal class Show
     {
 
+        public void ShowVersion()
+        {
+            Console.WriteLine("===========================================================================");
+            Console.WriteLine("                               Version: 0.3.0                                ");
+            Console.WriteLine("          =====           =====     ==========     =====     =====         ");
+            Console.WriteLine("         =====--         =====     ===== =====     =====     =====         ");
+            Console.WriteLine("        ===== ---       =====     =====  =====     =====     =====         ");
+            Console.WriteLine("       =====   ---     =====     =====   =====     ===============         ");
+            Console.WriteLine("      =====     ---   =====     ==============     ===============         ");
+            Console.WriteLine("     =====       --- =====     =====     =====     =====     =====         ");
+            Console.WriteLine("    =====           =====     =====      =====     =====     =====         ");
+            Console.WriteLine("===========================================================================");
+        }
 
         public void Help()
         {
 
-            Console.WriteLine("  Comandos disponíveis:");
-            Console.WriteLine("  - sair");
-            Console.WriteLine("  - clear - limpar console");
-            Console.WriteLine("  - ajuda/help");
+            Console.WriteLine("\tComandos disponíveis:");
+            Console.WriteLine("\t - sair");
+            Console.WriteLine("\t - clear - limpar console");
+            Console.WriteLine("\t - ajuda/help");
         }
+
+        public string ErrorCommand(string command)
+        {
+            return $"Comando '{command}' não encontrado";
+        }
+
+       
 
 
     }

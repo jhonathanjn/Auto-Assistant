@@ -1,4 +1,5 @@
 ﻿using Nah.Models;
+using Nah.Services;
 
 namespace Program
 {
@@ -6,65 +7,56 @@ namespace Program
     {
         static void Main(string[] args) {
 
-            Console.WriteLine("===========================================================================");
-            Console.WriteLine("                               Version: 1.1                                ");
-            Console.WriteLine("          =====           =====     ==========     =====     =====         ");
-            Console.WriteLine("         =====--         =====     ===== =====     =====     =====         ");
-            Console.WriteLine("        ===== ---       =====     =====  =====     =====     =====         ");
-            Console.WriteLine("       =====   ---     =====     =====   =====     ===============         ");
-            Console.WriteLine("      =====     ---   =====     ==============     ===============         ");
-            Console.WriteLine("     =====       --- =====     =====     =====     =====     =====         ");
-            Console.WriteLine("    =====           =====     =====      =====     =====     =====         ");
-            Console.WriteLine("===========================================================================");
+            Show show = new Show();
 
+            CommandService service = new CommandService();
+
+
+            show.ShowVersion();
 
             while (true)
             {
-
                 Console.Write("Nah > ");
 
-                string? command = Console.ReadLine();
+                string? result = Console.ReadLine();
 
-
-                if (string.IsNullOrWhiteSpace(command))
+                if (string.IsNullOrWhiteSpace(result)) { 
+                    Console.WriteLine("Digite um comando valido!");
                     continue;
+                }
+
+                string[] stringIgnore = { " ", "," };
+                string[] values = result.Split(stringIgnore, StringSplitOptions.RemoveEmptyEntries);
 
 
-                if (command == "sair")
+                if (values[0] == "sair")
                 {
                     Console.WriteLine("Exiting Nah...");
                     break;
                 }
 
-                if(command == "clear")
+                if(values[0] == "clear")
                 {
                     Console.Clear();
-                    Console.WriteLine("===========================================================================");
-                    Console.WriteLine("                               Version: 1.1                                ");
-                    Console.WriteLine("          =====           =====     ==========     =====     =====         ");
-                    Console.WriteLine("         =====--         =====     ===== =====     =====     =====         ");
-                    Console.WriteLine("        ===== ---       =====     =====  =====     =====     =====         ");
-                    Console.WriteLine("       =====   ---     =====     =====   =====     ===============         ");
-                    Console.WriteLine("      =====     ---   =====     ==============     ===============         ");
-                    Console.WriteLine("     =====       --- =====     =====     =====     =====     =====         ");
-                    Console.WriteLine("    =====           =====     =====      =====     =====     =====         ");
-                    Console.WriteLine("===========================================================================");
+                    show.ShowVersion();
                     continue;
                 }
 
-                if (command == "ajuda" || command == "help")
+                if (values[0] == "ajuda" || values[0] == "help")
                 {
-                    Helpme help = new Helpme();
-
-                    help.Help();
-
+                    show.Help();
                     continue;
                 }
-                
-                Console.WriteLine($"Comando '{command}' não encontrado");
 
-                
-                
+                if (values[0] == "abrir" && values.Length > 1)
+                {
+                    service.ConsoleCommand(values[1]);
+                }
+                else if (values[0] == "abrir")
+                {
+                    Console.WriteLine("Digite o caminho do arquivo ou pasta que deseja abrir!");
+                }
+                         
             }
         }
     }

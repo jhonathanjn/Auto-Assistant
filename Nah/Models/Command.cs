@@ -7,6 +7,6 @@ namespace Nah.Models
     internal class Command
     {
         public string Action { get; set; }
-        public string  function { get; set; }
+        public string  Target { get; set; }
     }
 }
