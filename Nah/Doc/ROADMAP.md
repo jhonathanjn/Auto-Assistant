@@ -120,7 +120,7 @@ Depois:
 ### Funcionalidades futuras
 - [X] Abrir aplicativo
 - [X] Abrir arquivo
-- [ ] Abrir pasta
+- [X] Abrir pasta
 - [ ] Abrir site
 - [ ] Fechar aplicativo
 - [ ] Verificar se aplicativo está executando
