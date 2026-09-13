@@ -26,7 +26,7 @@ namespace Nah.Models
 
             Console.WriteLine("\tComandos disponíveis:");
             Console.WriteLine("\t - sair");
-            Console.WriteLine("\t - clear - limpar console");
+            Console.WriteLine("\t - clear/cl - limpar console");
             Console.WriteLine("\t - ajuda/help");
         }
 

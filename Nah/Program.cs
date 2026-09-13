@@ -11,6 +11,8 @@ namespace Program
 
             CommandService service = new CommandService();
 
+            ParserService parser = new ParserService();
+
 
             show.ShowVersion();
 
@@ -35,7 +37,7 @@ namespace Program
                     break;
                 }
 
-                if(values[0] == "clear")
+                if(values[0] == "clear" || values[0] == "cl")
                 {
                     Console.Clear();
                     show.ShowVersion();
@@ -48,14 +50,13 @@ namespace Program
                     continue;
                 }
 
-                if (values[0] == "abrir" && values.Length > 1)
+                Command? command = parser.Parser(values);
+
+                if (command != null)
                 {
-                    service.ConsoleCommand(values[1]);
+                    service.ConsoleCommand(command);
                 }
-                else if (values[0] == "abrir")
-                {
-                    Console.WriteLine("Digite o caminho do arquivo ou pasta que deseja abrir!");
-                }
+                
                          
             }
         }

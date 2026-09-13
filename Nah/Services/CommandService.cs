@@ -8,27 +8,35 @@ namespace Nah.Services
 {
     internal class CommandService
     {
-        public void ConsoleCommand(string target)
+        public void ConsoleCommand(Command command)
         {       
             AppService appService = new AppService();
             FileService fileService = new FileService();
             FolderService folderService = new FolderService();
 
-            if (fileService.OpenFile(target))
+            if(command.Target != string.Empty)
             {
-                return;
-            }
-            else if (folderService.OpenFolder(target))
-            {
-                return;
-            }
-            else if (appService.OpenApp(target))
-            {
-                return;
+
+                if (fileService.OpenFile(command.Target))
+                {
+                    return;
+                }
+                else if (folderService.OpenFolder(command.Target))
+                {
+                    return;
+                }
+                else if (appService.OpenApp(command.Target))
+                {
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine(command.Target + " is not a valid command.");
+                }
             }
             else
             {
-                Console.WriteLine(target + " is not a valid command.");
+                Console.WriteLine("Como posso ajudar?");
             }
 
 
